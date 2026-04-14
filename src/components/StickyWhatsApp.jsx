@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { MessageCircle } from "lucide-react";
-import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useMotionValueEvent, useReducedMotion } from "framer-motion";
 import { waLink } from "../lib/whatsapp";
 
 const MSG = "Bonjour, je souhaite en savoir plus sur le sponsoring de Golden Talents Kids 3.0.";
@@ -8,6 +8,7 @@ const MSG = "Bonjour, je souhaite en savoir plus sur le sponsoring de Golden Tal
 export default function StickyWhatsApp() {
   const [visible, setVisible] = useState(false);
   const { scrollY } = useScroll();
+  const reduceMotion = useReducedMotion();
 
   useMotionValueEvent(scrollY, "change", (v) => {
     setVisible(v > 400);
@@ -35,16 +36,20 @@ export default function StickyWhatsApp() {
           className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50"
         >
           <span className="relative flex w-14 h-14 sm:w-16 sm:h-16">
-            <motion.span
-              className="absolute inset-0 rounded-full bg-[#25D366]"
-              animate={{ scale: [1, 1.4, 1.4], opacity: [0.6, 0, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
-            />
-            <motion.span
-              className="absolute inset-0 rounded-full bg-[#25D366]"
-              animate={{ scale: [1, 1.4, 1.4], opacity: [0.6, 0, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 1 }}
-            />
+            {!reduceMotion && (
+              <motion.span
+                className="absolute inset-0 rounded-full bg-[#25D366]"
+                animate={{ scale: [1, 1.4, 1.4], opacity: [0.6, 0, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+              />
+            )}
+            {!reduceMotion && (
+              <motion.span
+                className="absolute inset-0 rounded-full bg-[#25D366]"
+                animate={{ scale: [1, 1.4, 1.4], opacity: [0.6, 0, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 1 }}
+              />
+            )}
             <span className="relative flex w-full h-full rounded-full bg-[#25D366] items-center justify-center shadow-xl ring-4 ring-white/80">
               <MessageCircle className="w-7 h-7 sm:w-8 sm:h-8 text-white" fill="currentColor" />
             </span>

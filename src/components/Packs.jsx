@@ -1,5 +1,5 @@
 import { Check, Sparkles, MessageCircle } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { waLink } from "../lib/whatsapp";
 import { fadeUp, stagger, inViewProps } from "../lib/motion";
 
@@ -25,7 +25,7 @@ const pack2Extra = [
 
 const featureVariant = {
   hidden: { opacity: 0, x: -10 },
-  show:   { opacity: 1, x: 0, transition: { duration: 0.4 } },
+  show: { opacity: 1, x: 0, transition: { duration: 0.4 } },
 };
 
 function Feature({ children, highlight }) {
@@ -34,9 +34,8 @@ function Feature({ children, highlight }) {
       <motion.span
         whileHover={{ scale: 1.2, rotate: 360 }}
         transition={{ duration: 0.4 }}
-        className={`shrink-0 mt-0.5 w-5 h-5 rounded-full grid place-items-center ${
-          highlight ? "bg-brand-gold text-brand-ink" : "bg-brand-blue/10 text-brand-blue"
-        }`}
+        className={`shrink-0 mt-0.5 w-5 h-5 rounded-full grid place-items-center ${highlight ? "bg-brand-gold text-brand-ink" : "bg-brand-blue/10 text-brand-blue"
+          }`}
       >
         <Check className="w-3 h-3" strokeWidth={3} />
       </motion.span>
@@ -49,10 +48,12 @@ function Feature({ children, highlight }) {
 
 const cardVariant = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
-  show:   { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
 
 export default function Packs() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section id="packs" className="bg-gradient-to-b from-white to-brand-cream scroll-mt-8">
       <div className="mx-auto max-w-6xl px-5 py-16 sm:py-24">
@@ -126,8 +127,8 @@ export default function Packs() {
           {/* Pack 2 — Recommended */}
           <motion.article
             variants={cardVariant}
-            animate={{ y: [0, -6, 0] }}
-            transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
+            animate={reduceMotion ? undefined : { y: [0, -6, 0] }}
+            transition={reduceMotion ? undefined : { y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
             whileHover={{ scale: 1.08 }}
             className="relative rounded-3xl bg-gradient-to-br from-brand-blue to-[#2a4bb0] text-white border border-brand-gold ring-4 ring-brand-gold/50 md:scale-105 p-7 sm:p-8 shadow-gold flex flex-col"
           >

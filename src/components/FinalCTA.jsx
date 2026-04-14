@@ -1,5 +1,5 @@
 import { MessageCircle, Heart } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { waLink, INSTAGRAM_URL } from "../lib/whatsapp";
 import { fadeUp, stagger, inViewProps } from "../lib/motion";
 
@@ -14,13 +14,15 @@ const InstagramIcon = (props) => (
 );
 
 export default function FinalCTA() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-brand-ink via-brand-blue to-brand-ink text-white">
       <motion.div
         aria-hidden="true"
-        className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-brand-gold/10 blur-3xl"
-        animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.8, 0.4] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -top-24 left-1/2 -translate-x-1/2 w-[360px] h-[360px] sm:-top-32 sm:w-[600px] sm:h-[600px] rounded-full bg-brand-gold/10 blur-2xl sm:blur-3xl"
+        animate={reduceMotion ? undefined : { scale: [1, 1.2, 1], opacity: [0.4, 0.8, 0.4] }}
+        transition={reduceMotion ? undefined : { duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <div className="relative mx-auto max-w-4xl px-5 py-20 sm:py-28 text-center">
@@ -30,8 +32,8 @@ export default function FinalCTA() {
             className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 backdrop-blur px-4 py-1.5 text-xs mb-6"
           >
             <motion.span
-              animate={{ scale: [1, 1.3, 1] }}
-              transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+              animate={reduceMotion ? undefined : { scale: [1, 1.3, 1] }}
+              transition={reduceMotion ? undefined : { duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
             >
               <Heart className="w-3.5 h-3.5 text-brand-coral" fill="currentColor" />
             </motion.span>
@@ -45,8 +47,8 @@ export default function FinalCTA() {
             Prêt à{" "}
             <motion.span
               className="text-brand-gold inline-block"
-              animate={{ rotate: [0, -3, 3, 0] }}
-              transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, ease: "easeInOut" }}
+              animate={reduceMotion ? undefined : { rotate: [0, -3, 3, 0] }}
+              transition={reduceMotion ? undefined : { duration: 3, repeat: Infinity, repeatDelay: 2, ease: "easeInOut" }}
             >
               collaborer
             </motion.span>{" "}

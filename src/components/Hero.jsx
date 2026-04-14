@@ -1,5 +1,5 @@
 import { Music, MessageCircle, Sparkles } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Countdown from "./Countdown";
 import { waLink, INSTAGRAM_URL } from "../lib/whatsapp";
 import { fadeUp, stagger } from "../lib/motion";
@@ -21,43 +21,45 @@ const NoteSvg = ({ className }) => (
 );
 
 export default function Hero() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-brand-blue via-[#2a4bb0] to-brand-ink text-white">
       {/* floating music notes */}
       <motion.div
         className="absolute top-16 left-6 text-brand-gold/70"
-        animate={{ y: [0, -14, 0], rotate: [-6, 6, -6] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        animate={reduceMotion ? undefined : { y: [0, -14, 0], rotate: [-6, 6, -6] }}
+        transition={reduceMotion ? undefined : { duration: 6, repeat: Infinity, ease: "easeInOut" }}
       >
-        <NoteSvg className="w-10 h-10" />
+        <NoteSvg className="w-8 h-8 sm:w-10 sm:h-10" />
       </motion.div>
       <motion.div
         className="absolute bottom-24 right-8 text-brand-coral/80"
-        animate={{ y: [0, -12, 0], rotate: [6, -6, 6] }}
-        transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+        animate={reduceMotion ? undefined : { y: [0, -12, 0], rotate: [6, -6, 6] }}
+        transition={reduceMotion ? undefined : { duration: 5.4, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
       >
-        <NoteSvg className="w-8 h-8" />
+        <NoteSvg className="w-6 h-6 sm:w-8 sm:h-8" />
       </motion.div>
       <motion.div
         className="absolute top-1/3 right-10 text-white/30"
-        animate={{ y: [0, -10, 0], rotate: [-4, 4, -4] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2.4 }}
+        animate={reduceMotion ? undefined : { y: [0, -10, 0], rotate: [-4, 4, -4] }}
+        transition={reduceMotion ? undefined : { duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2.4 }}
       >
-        <NoteSvg className="w-6 h-6" />
+        <NoteSvg className="w-5 h-5 sm:w-6 sm:h-6" />
       </motion.div>
 
       {/* glow */}
       <motion.div
         aria-hidden="true"
-        className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-brand-gold/20 blur-3xl"
-        animate={{ scale: [1, 1.15, 1], opacity: [0.6, 0.9, 0.6] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -top-32 -left-32 w-72 h-72 sm:-top-40 sm:-left-40 sm:w-96 sm:h-96 rounded-full bg-brand-gold/20 blur-2xl sm:blur-3xl"
+        animate={reduceMotion ? undefined : { scale: [1, 1.15, 1], opacity: [0.6, 0.9, 0.6] }}
+        transition={reduceMotion ? undefined : { duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         aria-hidden="true"
-        className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-brand-coral/20 blur-3xl"
-        animate={{ scale: [1.1, 1, 1.1], opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -bottom-32 -right-32 w-72 h-72 sm:-bottom-40 sm:-right-40 sm:w-96 sm:h-96 rounded-full bg-brand-coral/20 blur-2xl sm:blur-3xl"
+        animate={reduceMotion ? undefined : { scale: [1.1, 1, 1.1], opacity: [0.5, 0.8, 0.5] }}
+        transition={reduceMotion ? undefined : { duration: 9, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <div className="relative mx-auto max-w-6xl px-5 pt-10 pb-16 sm:pt-16 sm:pb-24">
@@ -98,8 +100,8 @@ export default function Hero() {
             className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 backdrop-blur px-4 py-1.5 text-xs sm:text-sm mb-6"
           >
             <motion.span
-              animate={{ rotate: [0, 15, -10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+              animate={reduceMotion ? undefined : { rotate: [0, 15, -10, 0] }}
+              transition={reduceMotion ? undefined : { duration: 2, repeat: Infinity, repeatDelay: 3 }}
             >
               <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
             </motion.span>
@@ -147,8 +149,8 @@ export default function Hero() {
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                animate={reduceMotion ? undefined : { x: [0, 4, 0] }}
+                transition={reduceMotion ? undefined : { duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
               >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </motion.svg>
