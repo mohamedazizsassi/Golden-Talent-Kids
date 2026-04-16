@@ -1,4 +1,4 @@
-import { Music, MessageCircle, Sparkles } from "lucide-react";
+import { MessageCircle, Sparkles } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import Countdown from "./Countdown";
 import { waLink, INSTAGRAM_URL } from "../lib/whatsapp";
@@ -70,16 +70,13 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
           className="flex items-center justify-between gap-4 mb-10"
         >
-          <div className="flex items-center gap-2">
-            <motion.div
-              whileHover={{ rotate: [0, -8, 8, -4, 0], scale: 1.05 }}
-              transition={{ duration: 0.6 }}
-              className="w-11 h-11 rounded-xl bg-brand-gold/90 grid place-items-center shadow-gold"
-            >
-              <Music className="w-5 h-5 text-brand-ink" />
-            </motion.div>
-            <span className="font-semibold tracking-tight text-sm sm:text-base">Golden Talents Kids</span>
-          </div>
+          <motion.img
+            src="/golden%20talent%20kids%20logo.png"
+            alt="Golden Talents Kids"
+            whileHover={{ scale: 2 }}
+            transition={{ duration: 0.35 }}
+            className="h-30 sm:h-56 w-auto object-contain"
+          />
           <div className="flex items-center gap-2">
             <div className="text-[11px] sm:text-xs text-white/70 text-right leading-tight hidden sm:block">
               En partenariat avec<br />
